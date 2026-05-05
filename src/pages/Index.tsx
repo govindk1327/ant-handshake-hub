@@ -10,6 +10,7 @@ import verifyImg from "@/assets/visily-mid-shift-dashboard.jpg";
 import withdrawImg from "@/assets/visily-walletflow-transaction-dashboard.jpg";
 import ownerImg from "@/assets/visily-acme-corp.-user-list.jpg";
 import { Check } from "lucide-react";
+import PhoneFrame from "@/components/PhoneFrame";
 
 // Replace with your real Google Form formResponse URL
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/REPLACE_WITH_FORM_ID/formResponse";
@@ -51,16 +52,24 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="container flex items-center justify-between py-6">
-        <div className="flex items-center gap-2">
-          <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black">A</div>
-          <span className="font-bold text-xl tracking-tight">Ant App</span>
+      <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
+        <div className="container flex items-center justify-between py-4">
+          <a href="#" className="flex items-center gap-2">
+            <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black">A</div>
+            <span className="font-bold text-xl tracking-tight">Ant</span>
+          </a>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+            <a href="#how" className="hover:text-foreground transition">How it works</a>
+            <a href="#owners" className="hover:text-foreground transition">For Business</a>
+            <a href="#waitlist" className="hover:text-foreground transition">Waitlist</a>
+          </nav>
+          <Button
+            onClick={() => scrollToForm("shopowner")}
+            className="h-10 px-5 text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-md shadow-primary/20"
+          >
+            Get Early Access
+          </Button>
         </div>
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
-          <a href="#how" className="hover:text-foreground">How it works</a>
-          <a href="#features" className="hover:text-foreground">Features</a>
-          <a href="#" className="hover:text-foreground">Sign in</a>
-        </nav>
       </header>
 
       <section className="container grid lg:grid-cols-2 gap-12 items-center pt-10 pb-24">
@@ -92,13 +101,15 @@ const Index = () => {
 
         <div className="relative flex justify-center lg:justify-end">
           <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-          <img
-            src={heroMockup}
-            alt="Ant App task hub map dashboard on iPhone"
-            width={1024}
-            height={1280}
-            className="relative max-h-[640px] w-auto object-contain drop-shadow-2xl"
-          />
+          <PhoneFrame className="relative">
+            <img
+              src={heroMockup}
+              alt="Ant App task hub map dashboard"
+              width={1024}
+              height={1280}
+              className="h-full w-full object-contain"
+            />
+          </PhoneFrame>
         </div>
       </section>
 
@@ -121,15 +132,17 @@ const Index = () => {
                   <span className="h-px flex-1 mx-4 bg-background/10" />
                   <h3 className="text-xl font-bold">{s.title}</h3>
                 </div>
-                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-background/5 mb-6 flex items-center justify-center">
-                  <img
-                    src={s.img}
-                    alt={`${s.title} step`}
-                    width={800}
-                    height={1000}
-                    loading="lazy"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="mb-6 py-4">
+                  <PhoneFrame>
+                    <img
+                      src={s.img}
+                      alt={`${s.title} step`}
+                      width={800}
+                      height={1000}
+                      loading="lazy"
+                      className="h-full w-full object-contain"
+                    />
+                  </PhoneFrame>
                 </div>
                 <p className="text-base text-background/70 leading-relaxed">{s.text}</p>
               </div>
@@ -138,7 +151,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="container py-24">
+      <section id="owners" className="container py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8 order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold">
@@ -171,14 +184,16 @@ const Index = () => {
 
           <div className="relative order-1 lg:order-2">
             <div className="absolute -inset-6 bg-primary/10 blur-3xl rounded-3xl" />
-            <img
-              src={ownerImg}
-              alt="Business owner dashboard with worker list and live timers"
-              width={1280}
-              height={1000}
-              loading="lazy"
-              className="relative rounded-2xl shadow-2xl border border-border w-full"
-            />
+            <div className="relative rounded-2xl overflow-hidden border border-border bg-card shadow-2xl aspect-[4/3] flex items-center justify-center">
+              <img
+                src={ownerImg}
+                alt="Business owner dashboard with worker list and live timers"
+                width={1280}
+                height={1000}
+                loading="lazy"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -253,6 +268,27 @@ const Index = () => {
           </form>
         </div>
       </section>
+
+      <footer className="bg-foreground text-background mt-12">
+        <div className="container py-12 grid gap-8 md:grid-cols-3 items-center">
+          <div className="flex items-center gap-2">
+            <div className="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black">A</div>
+            <span className="font-bold text-xl tracking-tight">Ant</span>
+          </div>
+          <p className="text-center text-sm text-background/70">
+            🚀 Launching soon in local market clusters
+          </p>
+          <nav className="flex md:justify-end gap-6 text-sm text-background/70">
+            <a href="#" className="hover:text-primary transition">Privacy Policy</a>
+            <a href="#" className="hover:text-primary transition">Terms of Service</a>
+          </nav>
+        </div>
+        <div className="border-t border-background/10">
+          <div className="container py-4 text-xs text-background/50 text-center">
+            © {new Date().getFullYear()} Ant App. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
