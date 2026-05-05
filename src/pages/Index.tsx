@@ -1,6 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { Shield, Zap, HandshakeIcon } from "lucide-react";
 import heroMockup from "@/assets/visily-taskhub-map-dashboard.jpg";
+import matchImg from "@/assets/visily-warehouse-helper-job-details.jpg";
+import verifyImg from "@/assets/visily-mid-shift-dashboard.jpg";
+import withdrawImg from "@/assets/visily-walletflow-transaction-dashboard.jpg";
+
+const steps = [
+  {
+    n: "01",
+    title: "Match",
+    img: matchImg,
+    text: "Find verified local work or workers on our real-time map.",
+  },
+  {
+    n: "02",
+    title: "Verify",
+    img: verifyImg,
+    text: "Start and Finish jobs with GPS-locked security codes. No work, no pay. No pay, no work.",
+  },
+  {
+    n: "03",
+    title: "Withdraw",
+    img: withdrawImg,
+    text: "Funds are held in Escrow and released instantly to your UPI the moment the job ends.",
+  },
+];
 
 const Index = () => {
   return (
@@ -53,6 +77,42 @@ const Index = () => {
             height={1280}
             className="relative max-h-[640px] w-auto object-contain drop-shadow-2xl"
           />
+        </div>
+      </section>
+
+      <section id="how" className="bg-foreground text-background py-24">
+        <div className="container">
+          <div className="max-w-3xl mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 text-primary px-4 py-1.5 text-xs font-semibold mb-6">
+              <Shield className="h-3.5 w-3.5" /> Built on trust
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+              The Only Platform with <span className="text-primary">Hard-Coded Trust.</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {steps.map((s) => (
+              <div key={s.n} className="group relative rounded-3xl bg-background/5 border border-background/10 p-8 hover:border-primary/50 transition">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-sm font-mono text-primary font-bold">{s.n}</span>
+                  <span className="h-px flex-1 mx-4 bg-background/10" />
+                  <h3 className="text-xl font-bold">{s.title}</h3>
+                </div>
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-background/5 mb-6 flex items-center justify-center">
+                  <img
+                    src={s.img}
+                    alt={`${s.title} step`}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-base text-background/70 leading-relaxed">{s.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
