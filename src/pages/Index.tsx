@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Shield, Zap, HandshakeIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 import heroMockup from "@/assets/visily-taskhub-map-dashboard.jpg";
 import matchImg from "@/assets/visily-warehouse-helper-job-details.jpg";
 import verifyImg from "@/assets/visily-mid-shift-dashboard.jpg";
 import withdrawImg from "@/assets/visily-walletflow-transaction-dashboard.jpg";
 import ownerImg from "@/assets/visily-acme-corp.-user-list.jpg";
 import { Check } from "lucide-react";
+
+// Replace with your real Google Form formResponse URL
+const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/REPLACE_WITH_FORM_ID/formResponse";
 
 const steps = [
   {
@@ -29,6 +36,19 @@ const steps = [
 ];
 
 const Index = () => {
+  const [role, setRole] = useState<"shopowner" | "worker">("worker");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const r = params.get("role");
+    if (r === "shopowner" || r === "worker") setRole(r);
+  }, []);
+
+  const scrollToForm = (selectedRole: "shopowner" | "worker") => {
+    setRole(selectedRole);
+    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="container flex items-center justify-between py-6">
@@ -57,10 +77,10 @@ const Index = () => {
             The secure marketplace connecting local shops with verified help. No no-shows, no payment chasing.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <Button variant="outline" size="lg" className="h-14 px-8 text-base font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <Button onClick={() => scrollToForm("shopowner")} variant="outline" size="lg" className="h-14 px-8 text-base font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               I want to Hire
             </Button>
-            <Button size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
+            <Button onClick={() => scrollToForm("worker")} size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
               I want to Earn
             </Button>
           </div>
@@ -144,7 +164,7 @@ const Index = () => {
                 </li>
               ))}
             </ul>
-            <Button size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
+            <Button onClick={() => scrollToForm("shopowner")} size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
               Start Hiring Now
             </Button>
           </div>
@@ -160,6 +180,77 @@ const Index = () => {
               className="relative rounded-2xl shadow-2xl border border-border w-full"
             />
           </div>
+        </div>
+      </section>
+
+      <section id="waitlist" className="container py-24">
+        <div className="max-w-2xl mx-auto bg-card border border-border rounded-3xl p-8 md:p-12 shadow-xl">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold mb-6">
+              <Zap className="h-3.5 w-3.5" /> Early access
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+              Join the <span className="text-primary">Waitlist.</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Be the first to access Ant App in your neighbourhood.
+            </p>
+          </div>
+
+          <form
+            action={GOOGLE_FORM_ACTION}
+            method="POST"
+            target="_blank"
+            className="space-y-6"
+          >
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" name="entry.NAME_ID" required maxLength={100} placeholder="Your full name" className="h-12" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="entry.EMAIL_ID" type="email" required maxLength={255} placeholder="you@example.com" className="h-12" />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="pincode">Pincode <span className="text-muted-foreground font-normal">(for demand tracking)</span></Label>
+              <Input id="pincode" name="entry.PINCODE_ID" required pattern="[0-9]{6}" maxLength={6} inputMode="numeric" placeholder="560001" className="h-12" />
+            </div>
+            <div className="space-y-3">
+              <Label>I am a:</Label>
+              <RadioGroup
+                name="entry.ROLE_ID"
+                value={role}
+                onValueChange={(v) => setRole(v as "shopowner" | "worker")}
+                className="grid grid-cols-2 gap-3"
+              >
+                <Label
+                  htmlFor="role-shopowner"
+                  className={`flex items-center gap-3 rounded-xl border-2 p-4 cursor-pointer transition ${
+                    role === "shopowner" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <RadioGroupItem value="shopowner" id="role-shopowner" />
+                  <span className="font-semibold">Shopowner</span>
+                </Label>
+                <Label
+                  htmlFor="role-worker"
+                  className={`flex items-center gap-3 rounded-xl border-2 p-4 cursor-pointer transition ${
+                    role === "worker" ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                  }`}
+                >
+                  <RadioGroupItem value="worker" id="role-worker" />
+                  <span className="font-semibold">Worker</span>
+                </Label>
+              </RadioGroup>
+            </div>
+
+            <Button type="submit" size="lg" className="w-full h-14 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
+              Join the Waitlist
+            </Button>
+            <p className="text-xs text-muted-foreground text-center">
+              By joining you agree to receive updates about Ant App.
+            </p>
+          </form>
         </div>
       </section>
     </div>
