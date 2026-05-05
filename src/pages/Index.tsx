@@ -4,6 +4,8 @@ import heroMockup from "@/assets/visily-taskhub-map-dashboard.jpg";
 import matchImg from "@/assets/visily-warehouse-helper-job-details.jpg";
 import verifyImg from "@/assets/visily-mid-shift-dashboard.jpg";
 import withdrawImg from "@/assets/visily-walletflow-transaction-dashboard.jpg";
+import ownerImg from "@/assets/visily-acme-corp.-user-list.jpg";
+import { Check } from "lucide-react";
 
 const steps = [
   {
@@ -112,6 +114,51 @@ const Index = () => {
                 <p className="text-base text-background/70 leading-relaxed">{s.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8 order-2 lg:order-1">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold">
+              For Business Owners
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
+              Staff Your Shop in <span className="text-primary">60 Seconds.</span>
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              Manage 1 or 50 workers from a single dashboard. Track live attendance, active timers, and release payments with a single click. Stop managing WhatsApp groups and start managing your business.
+            </p>
+            <ul className="space-y-3">
+              {[
+                "Live attendance & GPS check-ins",
+                "One-click payment release",
+                "Verified worker pool, no more no-shows",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-base font-medium">
+                  <span className="h-6 w-6 rounded-full bg-primary/15 text-primary flex items-center justify-center">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Button size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
+              Start Hiring Now
+            </Button>
+          </div>
+
+          <div className="relative order-1 lg:order-2">
+            <div className="absolute -inset-6 bg-primary/10 blur-3xl rounded-3xl" />
+            <img
+              src={ownerImg}
+              alt="Business owner dashboard with worker list and live timers"
+              width={1280}
+              height={1000}
+              loading="lazy"
+              className="relative rounded-2xl shadow-2xl border border-border w-full"
+            />
           </div>
         </div>
       </section>
