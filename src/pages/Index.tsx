@@ -2,7 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Shield, Zap, HandshakeIcon } from "lucide-react";
+import {
+  Shield,
+  Zap,
+  HandshakeIcon,
+  KeyRound,
+  MapPin,
+  LayoutDashboard,
+  Star,
+  Wallet,
+  ShieldAlert,
+  MessageCircle,
+  BellRing,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import heroMockup from "@/assets/visily-taskhub-map-dashboard.jpg";
 import matchImg from "@/assets/visily-warehouse-helper-job-details.jpg";
