@@ -2,7 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Shield, Zap, HandshakeIcon } from "lucide-react";
+import {
+  Shield,
+  Zap,
+  HandshakeIcon,
+  KeyRound,
+  MapPin,
+  LayoutDashboard,
+  Star,
+  Wallet,
+  ShieldAlert,
+  MessageCircle,
+  BellRing,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import heroMockup from "@/assets/visily-taskhub-map-dashboard.jpg";
 import matchImg from "@/assets/visily-warehouse-helper-job-details.jpg";
@@ -147,6 +159,158 @@ const Index = () => {
                 <p className="text-base text-background/70 leading-relaxed">{s.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="features" className="container py-24">
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold mb-6">
+            <Zap className="h-3.5 w-3.5" /> Platform features
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+            Everything you need to <span className="text-primary">trade labor with trust.</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(220px,auto)] gap-4">
+          {/* Tile 1 — Core USP, 2x2 */}
+          <div className="md:col-span-2 lg:row-span-2 rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <KeyRound className="h-5 w-5" />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+              The Escrow-and-Code Architecture
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              Funds are secured in escrow before you start. Payments are released instantly with a 4-digit digital handshake.
+            </p>
+            <div className="mt-auto rounded-xl bg-primary/5 border border-primary/20 p-6 flex flex-col items-center justify-center gap-4">
+              <span className="text-xs font-semibold tracking-widest text-primary">FINISH CODE</span>
+              <div className="flex gap-3">
+                {["7", "2", "9", "4"].map((d, i) => (
+                  <div
+                    key={i}
+                    className="h-14 w-12 md:h-16 md:w-14 rounded-xl bg-background border-2 border-primary/40 flex items-center justify-center text-2xl md:text-3xl font-black text-primary shadow-sm"
+                  >
+                    {d}
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+                <Shield className="h-3.5 w-3.5 text-primary" /> Escrow secured · Released instantly
+              </div>
+            </div>
+          </div>
+
+          {/* Tile 2 — Map Discovery, 2x1 */}
+          <div className="md:col-span-2 rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <MapPin className="h-5 w-5" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2">Real-Time Map Discovery</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Find Gigs (Orange Pins) or Shifts (Blue Pins) filtered by your expertise like Sales, Cleaning, or Delivery.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary">● Gigs</span>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/10 text-blue-600">● Shifts</span>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">Sales</span>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">Cleaning</span>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted text-muted-foreground">Delivery</span>
+            </div>
+          </div>
+
+          {/* Tile 3 — Command Center, 2x1 */}
+          <div className="md:col-span-2 rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div className="flex-1">
+              <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+                <LayoutDashboard className="h-5 w-5" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2">Hiring Command Center</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Manage multiple workers from one dashboard. Track attendance, timers, and release payments for your entire team simultaneously.
+              </p>
+            </div>
+            <div className="w-full md:w-40 shrink-0 rounded-xl overflow-hidden border border-border bg-background aspect-[4/5] flex items-center justify-center">
+              <img
+                src={ownerImg}
+                alt="Hiring command center dashboard"
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Tile 4 — Reputation, 1x1 */}
+          <div className="rounded-2xl border border-border bg-card p-6 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <Star className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold tracking-tight mb-2">Ant Reputation Algorithm</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              A 0.0–5.0 scoring system based on punctuality and completion to ensure you only work with the best.
+            </p>
+            <div className="mt-4 flex items-center gap-1 text-primary">
+              {[0, 1, 2, 3].map((i) => (
+                <Star key={i} className="h-4 w-4 fill-current" />
+              ))}
+              <Star className="h-4 w-4" />
+              <span className="ml-2 text-sm font-bold text-foreground">4.0</span>
+            </div>
+          </div>
+
+          {/* Tile 5 — Live Earnings, 1x1 */}
+          <div className="rounded-2xl border border-border bg-card p-6 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <Wallet className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold tracking-tight mb-2">Live Earnings</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Watch your earnings grow in real-time with our Live Earnings Dashboard and instant UPI withdrawals.
+            </p>
+            <div className="mt-4 text-2xl font-black text-primary">
+              ₹2,480<span className="text-xs text-muted-foreground font-medium ml-2">today</span>
+            </div>
+          </div>
+
+          {/* Tile 6 — Safety, 2x1 */}
+          <div className="md:col-span-2 rounded-2xl border border-border bg-card p-6 md:p-8 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <ShieldAlert className="h-5 w-5" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2">Built-in Safety Guardrails</h3>
+            <p className="text-muted-foreground leading-relaxed">
+              GPS drift or dead phones? Our Evidence Portal and Manual Overrides keep the platform fair even when tech fails.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary">Evidence Portal</span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary">Manual Override</span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary">Prorated Payout</span>
+            </div>
+          </div>
+
+          {/* Tile 7 — Chat, 1x1 */}
+          <div className="rounded-2xl border border-border bg-card p-6 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <MessageCircle className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold tracking-tight mb-2">Ephemeral Chat</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Secure messaging that unlocks only when a match is made, keeping your privacy protected.
+            </p>
+          </div>
+
+          {/* Tile 8 — Alerts, 1x1 */}
+          <div className="rounded-2xl border border-border bg-card p-6 flex flex-col">
+            <div className="h-11 w-11 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-5">
+              <BellRing className="h-5 w-5" />
+            </div>
+            <h3 className="text-lg font-bold tracking-tight mb-2">Automated Alerts</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Proximity alerts, escrow reminders, and punctuality warnings to keep the handshake success rate at 90%.
+            </p>
+            <div className="mt-4 text-xs font-bold text-primary">90% success rate</div>
           </div>
         </div>
       </section>
