@@ -20,8 +20,8 @@ export const PhoneFrame = ({ children, className = "" }: PhoneFrameProps) => {
 
       {/* screen */}
       <div className="relative h-full w-full overflow-hidden rounded-[2.25rem] bg-background">
-        {/* dynamic island */}
-        <div className="absolute left-1/2 top-2 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-foreground" />
+        {/* dynamic island
+        <div className="absolute left-1/2 top-2 z-10 h-6 w-24 -translate-x-1/2 rounded-full bg-foreground" /> */}
         <div className="h-full w-full flex items-center justify-center">
           {children}
         </div>
