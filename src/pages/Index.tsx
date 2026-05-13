@@ -27,43 +27,6 @@ import {
 // Replace with your real Google Form formResponse URL
 const GOOGLE_FORM_ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSc7C91XTEzNCPFVyqs7gQwrghgnVlGIvuwA2HmDT1xAJuktnw/formResponse";
 
-const [formData, setFormData] = useState({
-  name: "",
-  email: "",
-  pincode: "",
-  role: "Shopowner",
-});
-
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-
-  const formBody = new FormData();
-
-  formBody.append("entry.1343791499", formData.name);
-  formBody.append("entry.1776311289", formData.email);
-  formBody.append("entry.955112658", formData.pincode);
-  formBody.append("entry.997473331", formData.role);
-
-  try {
-    await fetch(GOOGLE_FORM_ACTION, {
-      method: "POST",
-      mode: "no-cors",
-      body: formBody,
-    });
-
-    alert("Successfully joined the waitlist!");
-
-    setFormData({
-      name: "",
-      email: "",
-      pincode: "",
-      role: "Shopowner",
-    });
-  } catch (error) {
-    alert("Something went wrong.");
-  }
-};
-
 const steps = [
   {
     n: "01",
@@ -86,6 +49,44 @@ const steps = [
 ];
 
 const Index = () => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    pincode: "",
+    role: "Shopowner",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const formBody = new FormData();
+
+    formBody.append("entry.1343791499", formData.name);
+    formBody.append("entry.1776311289", formData.email);
+    formBody.append("entry.955112658", formData.pincode);
+    formBody.append("entry.997473331", formData.role);
+
+    try {
+      await fetch(GOOGLE_FORM_ACTION, {
+        method: "POST",
+        mode: "no-cors",
+        body: formBody,
+      });
+
+      alert("Successfully joined the waitlist!");
+
+      setFormData({
+        name: "",
+        email: "",
+        pincode: "",
+        role: "Shopowner",
+      });
+    } catch (error) {
+      alert("Something went wrong.");
+    }
+  };
+
   const [role, setRole] = useState<"shopowner" | "worker">("worker");
 
   useEffect(() => {
