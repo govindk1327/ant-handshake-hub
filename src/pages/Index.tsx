@@ -393,6 +393,54 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="workers" className="container py-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="relative order-1 lg:order-1">
+            {/* glow effect */}
+            <div className="absolute -inset-10 bg-primary/10 blur-3xl rounded-full" />
+
+            {/* phone frame */}
+            <PhoneFrame className="relative z-10">
+              <img
+                src={verifyImg}
+                alt="Worker viewing verified local job details in the Ant App"
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </PhoneFrame>
+          </div>
+
+          <div className="space-y-8 order-2 lg:order-2">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold">
+              For Workers
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
+              Your Pay is Locked In <span className="text-primary">Before You Start.</span>
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+              No more chasing payments or betting on no-show employers. Every job is escrow-secured the moment you accept, and your earnings hit your UPI the instant the job ends. Build trust with every completed job and unlock better-paying opportunities.
+            </p>
+            <ul className="space-y-3">
+              {[
+                "Pay secured in escrow before you begin",
+                "Instant UPI withdrawal when the job ends",
+                "Ant Score grows with every completed job",
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3 text-base font-medium">
+                  <span className="h-6 w-6 rounded-full bg-primary/15 text-primary flex items-center justify-center">
+                    <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Button onClick={() => scrollToForm("worker")} size="lg" className="h-14 px-8 text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/30">
+              Start Earning Now
+            </Button>
+          </div>
+        </div>
+      </section>
+
       <section id="waitlist" className="container py-24">
         <div className="max-w-2xl mx-auto bg-card border border-border rounded-3xl p-8 md:p-12 shadow-xl">
           <div className="text-center mb-10">
