@@ -111,6 +111,7 @@ const Index = () => {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#how" className="hover:text-foreground transition">How it works</a>
             <a href="#owners" className="hover:text-foreground transition">For Business</a>
+            <a href="#workers" className="hover:text-foreground transition">For Workers</a>
             <a href="#waitlist" className="hover:text-foreground transition">Waitlist</a>
           </nav>
           <Button
